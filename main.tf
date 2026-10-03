@@ -16,3 +16,8 @@ resource "aws_kms_key" "security_logs" {
   enable_key_rotation     = true
   deletion_window_in_days = 10
 }
+
+resource "aws_kms_alias" "security_logs" {
+  name          = "alias/devsecops-security-logs"
+  target_key_id = aws_kms_key.security_logs.key_id
+}
