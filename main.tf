@@ -66,3 +66,12 @@ resource "aws_s3_bucket_policy" "cloudtrail_logs" {
     ]
   })
 }
+
+resource "aws_cloudtrail" "security_baseline" {
+  name                          = "devsecops-security-baseline-trail"
+  s3_bucket_name                = aws_s3_bucket.security_logs.id
+  include_global_service_events = true
+  is_multi_region_trail         = true
+  enable_logging                = true
+  enable_log_file_validation    = true
+}
