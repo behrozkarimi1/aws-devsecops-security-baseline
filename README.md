@@ -52,13 +52,14 @@ This baseline includes several security controls:
 
 Common Terraform commands used in this project:
 
-`terraform init
+```
+terraform init
 terraform fmt
 terraform validate
 terraform plan
 terraform apply
-terraform destroy`
-
+terraform destroy
+```
 
 ## Verification
 
