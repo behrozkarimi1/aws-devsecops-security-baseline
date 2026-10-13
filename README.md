@@ -23,7 +23,7 @@ The S3 bucket policy allows the CloudTrail service to write logs only to the exp
 
 ## What This Builds
 
-**This project creates:**
+This project creates:
 
 - An S3 bucket for CloudTrail security logs
 - S3 public access block
@@ -52,11 +52,11 @@ This baseline includes several security controls:
 
 Common Terraform commands used in this project:
 
-`terraform init 
-terraform fmt 
-terraform validate 
-terraform plan 
-terraform apply 
+`terraform init
+terraform fmt
+terraform validate
+terraform plan
+terraform apply
 terraform destroy`
 
 
@@ -69,7 +69,8 @@ The project was verified by checking that:
 - Default encryption used SSE-KMS
 - The KMS key and alias existed
 - CloudTrail was created and logging
-- CloudTrail log folders appeared in the S3 bucket terraform plan showed no unexpected changes after deployment
+- CloudTrail log folders appeared in the S3 bucket
+- terraform plan showed no unexpected changes after deployment
 
 
 ## Cleanup Notes
