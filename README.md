@@ -1,14 +1,14 @@
-***AWS DevSecOps Security Baseline***
+# AWS DevSecOps Security Baseline
 
 
-**Goal**
+## Goal
 
 This project builds a secure AWS logging baseline using Terraform.
 
 The goal is to record AWS account activity with CloudTrail and store the logs in an encrypted S3 bucket. The logs are protected with public access blocking, SSE-KMS encryption, and a restricted bucket policy.
 
 
-**Architecture**
+## Architecture
 
 Terraform is used as Infrastructure as Code to deploy the baseline into AWS.
 
@@ -16,12 +16,14 @@ CloudTrail records AWS account activity, including API calls and management even
 
 The S3 bucket policy allows the CloudTrail service to write logs only to the expected AWSLogs account path.
 
+
+
 ![AWS DevSecOps Security Baseline](assets/aws-devsecops-security-baseline.png)
 
 
-**What This Builds**
+## What This Builds
 
-This project creates:
+**This project creates:**
 
 - An S3 bucket for CloudTrail security logs
 - S3 public access block
@@ -32,7 +34,7 @@ This project creates:
 - A multi-region CloudTrail with global service events and log file validation enabled
 
 
-**Security Controls**
+## Security Controls
 
 This baseline includes several security controls:
 
@@ -46,14 +48,19 @@ This baseline includes several security controls:
 - Restricted S3 bucket policy for CloudTrail writes
 
 
-**Terraform Commands**
+## Terraform Commands
 
 Common Terraform commands used in this project:
 
-terraform init terraform fmt terraform validate terraform plan terraform apply terraform destroy
+`terraform init 
+terraform fmt 
+terraform validate 
+terraform plan 
+terraform apply 
+terraform destroy`
 
 
-**Verification**
+## Verification
 
 The project was verified by checking that:
 
@@ -65,7 +72,7 @@ The project was verified by checking that:
 - CloudTrail log folders appeared in the S3 bucket terraform plan showed no unexpected changes after deployment
 
 
-**Cleanup Notes**
+## Cleanup Notes
 
 CloudTrail writes log objects into the S3 bucket. Because of that, terraform destroy can fail if the bucket is not empty.
 
@@ -74,14 +81,14 @@ For this learning lab, the bucket was manually emptied before running terraform 
 In production, security logs should not be casually deleted because they may be needed for audit, investigation, or compliance.
 
 
-**Cost**
+## Cost
 
 This lab cost about $0.01 during testing.
 
 A zero-spend budget alert was configured to warn if charges went above $0.01.
 
 
-**Lessons Learned**
+## Lessons Learned
 
 Terraform can only create, update, or destroy resources that the IAM identity is allowed to manage.
 
@@ -94,7 +101,7 @@ S3 can use a customer-managed KMS key for default server-side encryption.
 KMS key deletion is scheduled, not immediate.
 
 
-**Next Improvements**
+## Next Improvements
 
 Future improvements:
 
