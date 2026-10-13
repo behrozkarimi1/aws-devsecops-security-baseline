@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "security_logs" {
-  bucket = "behroz-devsecops-security-logs-001"
+  bucket = var.cloudtrail_log_bucket_name
 }
 
 resource "aws_s3_bucket_public_access_block" "security_logs" {
@@ -12,13 +12,13 @@ resource "aws_s3_bucket_public_access_block" "security_logs" {
 }
 
 resource "aws_kms_key" "security_logs" {
-  description             = "KMS key for encrypting S3 security logs"
+  description             = "KMS key for encrypting CloudTrail logs stored in S3"
   enable_key_rotation     = true
   deletion_window_in_days = 10
 }
 
 resource "aws_kms_alias" "security_logs" {
-  name          = "alias/devsecops-security-logs"
+  name          = var.kms_alias_name
   target_key_id = aws_kms_key.security_logs.key_id
 }
 
@@ -68,7 +68,7 @@ resource "aws_s3_bucket_policy" "cloudtrail_logs" {
 }
 
 resource "aws_cloudtrail" "security_baseline" {
-  name                          = "devsecops-security-baseline-trail"
+  name                          = var.cloudtrail_name
   s3_bucket_name                = aws_s3_bucket.security_logs.id
   include_global_service_events = true
   is_multi_region_trail         = true
