@@ -4,6 +4,9 @@ on:
   push:
   pull_request:
 
+permission:
+  contents: read
+
 jobs:
   checkov:
     runs-on: ubuntu-latest
